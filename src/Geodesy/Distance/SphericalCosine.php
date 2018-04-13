@@ -4,21 +4,9 @@ namespace Geodesy\Distance;
 
 use Geodesy\Location\LatLong;
 
-class SphericalCosine
+class SphericalCosine extends BaseDistance implements DistanceInterface
 {
 
-	private $source;
-
-    private $destination;
-
-    CONST R = 6371;
-
-    public function __construct(LatLong $source, LatLong $destination)
-    {
-        $this->source = $source;
-        $this->destination = $destination;
-        $this->radius = self::R;
-    }
 
     /**
      * d = acos( sin φ1 * sin φ2 + cos φ1 * cos φ2 * cos Δλ ) * R

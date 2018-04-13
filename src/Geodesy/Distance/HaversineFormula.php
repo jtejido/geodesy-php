@@ -4,21 +4,9 @@ namespace Geodesy\Distance;
 
 use Geodesy\Location\LatLong;
 
-class HaversineFormula
+class HaversineFormula extends BaseDistance implements DistanceInterface
 {
 
-	private $source;
-
-    private $destination;
-
-    CONST R = 6371;
-
-    public function __construct(LatLong $source, LatLong $destination)
-    {
-        $this->source = $source;
-        $this->destination = $destination;
-        $this->radius = self::R;
-    }
 
     /**
      * a = sin²(Δφ/2) + cos φ1 * cos φ2 * sin²(Δλ/2)

@@ -4,26 +4,15 @@ namespace Geodesy\Distance;
 
 use Geodesy\Location\LatLong;
 
-class VincentyFormula
+class VincentyFormula extends BaseDistance implements DistanceInterface
 {
 
-	private $source;
-
-    private $destination;
 
     /**
      * Vincenty's formula is using an accurate ellipsoidal model of the earth as opposed to a pressumably perfectly spherical shape.
      * Vincenty’s solution for the distance between points on an ellipsoidal earth model is accurate to within a millimeter.
      * While it doesn't appear to take into account the seismic activity of the earth (yes, where we are right now isn't the same next month 
      * or year, and so on), it depends on standards to give out a precise latitude and longitude data (http://itrf.ign.fr/ITRF_solutions/2014)
-     */
-    public function __construct(LatLong $source, LatLong $destination)
-    {
-        $this->source = $source;
-        $this->destination = $destination;
-    }
-
-    /**
      * This is a long formula (we use the indirect):
      * https://en.wikipedia.org/wiki/Vincenty%27s_formulae
      */
