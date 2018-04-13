@@ -1,0 +1,28 @@
+{
+	"name": "jtejido/geodesy-php",
+	"description": "PHP library for geodesy functions",
+	"keywords": ["geodesy", "great-earth distance"],
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Jericko Tejido",
+			"email": "jtbibliomania@gmail.com"
+		}
+	],
+	"require": {
+		"php": ">=5.6"
+	},
+	"autoload": {
+		"psr-4": {
+			"Geodesy\\": "src/"
+		}
+	},
+	"autoload-dev": {
+	    "psr-4": { 
+	    	"Geodesy\\Tests\\": "tests/" 
+	    }
+	 },
+	"require-dev": {
+	  	"phpunit/phpunit": "5.*"
+	}
+}
