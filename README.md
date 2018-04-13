@@ -42,7 +42,7 @@ $loc2->setLatitude($lat2);
 $loc2->setLongitude($long2);
 
 
-
+// SphericalCosine($loc1, $loc2) or VincentyFormula($loc1, $loc2)
 $distance = new HaversineFormula($loc1, $loc2);
 
 // get the distance
