@@ -92,18 +92,6 @@ class VincentyFormula extends BaseDistance implements DistanceInterface
         $s = $b * $A * ($sigma - $deltaSigma);
         
         return $s / 1000;
-    }
-
-    /**
-     * Checks if distance is within a set range (in meters)
-     * @param  int $range
-     * @return bool
-     */
-    public function isInRange($range)
-    {
-        return $this->getDistance() <= $range;
-    }
-
-    
+    }    
 
 }

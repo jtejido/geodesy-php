@@ -36,16 +36,4 @@ class HaversineFormula extends BaseDistance implements DistanceInterface
         return $c * $this->radius;
     }
 
-    /**
-     * Checks if distance is within a set range (in kilometers)
-     * @param  int $range
-     * @return bool
-     */
-    public function isInRange($range)
-    {
-        return $this->getDistance() <= $range;
-    }
-
-    
-
 }

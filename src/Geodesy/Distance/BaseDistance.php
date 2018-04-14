@@ -47,6 +47,12 @@ abstract class BaseDistance
 
     abstract public function distance();
 
-    abstract public function isInRange($range);
+    public function isInRange($range)
+    {
+        if($this->getUnit() instanceof Metre){
+            $range = $range * 1000;
+         }
+        return $this->getDistance() <= $range;
+    }
 
 }
