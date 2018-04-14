@@ -3,8 +3,6 @@
 namespace Geodesy\Distance;
 
 use Geodesy\Location\LatLong;
-use Geodesy\Unit\KiloMetre;
-use Geodesy\Unit\Metre;
 
 class SphericalCosine extends BaseDistance implements DistanceInterface
 {
@@ -12,7 +10,6 @@ class SphericalCosine extends BaseDistance implements DistanceInterface
     public function __construct(LatLong $source, LatLong $destination)
     {
         parent::__construct($source, $destination);
-        $this->unit = new Kilometre;
     }
 
     /**

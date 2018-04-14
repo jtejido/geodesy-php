@@ -3,25 +3,9 @@
 namespace Geodesy\Unit;
 
 
-class BaseUnit
+abstract class BaseUnit
 {
 
-    protected $value;
-
-    public function __construct()
-    {
-        $this->value = null;
-    }
-
-    public function setValue($value)
-    {
-        $this->value = $value;
-    }
-
-    public function getValue()
-    {
-        return $this->value;
-    }
-
+    abstract public function convert($value);
 
 }

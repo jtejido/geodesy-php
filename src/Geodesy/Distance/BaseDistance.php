@@ -5,6 +5,8 @@ namespace Geodesy\Distance;
 use Geodesy\Location\LatLong;
 use Geodesy\Unit\UnitInterface;
 use Geodesy\Unit\Metre;
+use Geodesy\Unit\Mile;
+use Geodesy\Unit\KiloMetre;
 
 abstract class BaseDistance
 {
@@ -22,7 +24,7 @@ abstract class BaseDistance
         $this->source = $source;
         $this->destination = $destination;
         $this->radius = self::R;
-        $this->unit = null;
+        $this->unit = new KiloMetre;
     }
 
     public function setUnit(UnitInterface $unit)
@@ -37,22 +39,14 @@ abstract class BaseDistance
 
     public function getDistance()
     {
-        $dist = $this->distance();
-        if($this->getUnit() instanceof Metre){
-            $dist = $dist * 1000;
-         }
-        $this->unit->setValue($dist);
-        return $this->unit->getValue();
+        return $this->getUnit()->convert($this->distance());
     }
 
     abstract public function distance();
 
     public function isInRange($range)
     {
-        if($this->getUnit() instanceof Metre){
-            $range = $range * 1000;
-         }
-        return $this->getDistance() <= $range;
+        return $this->getDistance() <= $this->getUnit()->convert($range);
     }
 
 }

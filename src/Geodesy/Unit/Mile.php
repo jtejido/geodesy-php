@@ -3,12 +3,12 @@
 namespace Geodesy\Unit;
 
 
-class Metre extends BaseUnit implements UnitInterface
+class Mile extends BaseUnit implements UnitInterface
 {
 
     public function convert($value)
     {
-        return $value * 1000;
+        return $value * 0.62137;
     }
 
 }
