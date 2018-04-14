@@ -1,3 +1,7 @@
+
+![Earth](https://www.mkompf.com/gps/images/sphere2.png)
+
+
 Geodesy-PHP
 =============
 
@@ -14,43 +18,7 @@ It provides distance calculations by:
 3. [Vincenty's formulae](https://en.wikipedia.org/wiki/Vincenty%27s_formulae)
 
 
-### Usage: ###
+Documentation
+=============
 
-
-Both **HaversineFormula** and **SphericalCosine** Class gives results in kilometer/s while the more accurate **VincentyFormula** is in meter/s.
-
-
-```
-use Geodesy\Location\LatLong;
-use Geodesy\Distance\HaversineFormula;
-use Geodesy\Distance\VincentyFormula;
-use Geodesy\Distance\SphericalCosine;
-
-$lat1 = 48.148636;
-$long1 = 17.107558;
-
-$lat2 = 48.208810;
-$long2 = 16.372477;
-
-$loc1 = new LatLong;
-$loc1->setLatitude($lat1);
-$loc1->setLongitude($long1);
-
-
-$loc2 = new LatLong;
-$loc2->setLatitude($lat2);
-$loc2->setLongitude($long2);
-
-
-// SphericalCosine($loc1, $loc2) or VincentyFormula($loc1, $loc2)
-$distance = new HaversineFormula($loc1, $loc2);
-
-// get the distance
-$distance->getDistance();
-
-/** 
- * Is within range?
- * Haversine and Cosine both assumes the value as kilometer/s while VincentyFormula is in meter/s.
- */
-$distance->isInRange(500);
-```
+You can read about it [here](https://myth-of-sissyphus.blogspot.com/2018/04/geodesyphp-great-earth-distance-library.html)
