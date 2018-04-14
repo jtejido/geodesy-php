@@ -3,10 +3,17 @@
 namespace Geodesy\Distance;
 
 use Geodesy\Location\LatLong;
+use Geodesy\Unit\Metre;
+use Geodesy\Unit\KiloMetre;
 
 class VincentyFormula extends BaseDistance implements DistanceInterface
 {
 
+    public function __construct(LatLong $source, LatLong $destination)
+    {
+        parent::__construct($source, $destination);
+        $this->unit = new KiloMetre;
+    }
 
     /**
      * Vincenty's formula is using an accurate ellipsoidal model of the earth as opposed to a pressumably perfectly spherical shape.
@@ -16,7 +23,7 @@ class VincentyFormula extends BaseDistance implements DistanceInterface
      * This is a long formula (we use the indirect):
      * https://en.wikipedia.org/wiki/Vincenty%27s_formulae
      */
-    public function getDistance()
+    public function distance()
     {
         $lat1 = deg2rad($this->source->getLatitude());
         $lat2 = deg2rad($this->destination->getLatitude());
@@ -84,7 +91,7 @@ class VincentyFormula extends BaseDistance implements DistanceInterface
         
         $s = $b * $A * ($sigma - $deltaSigma);
         
-        return $s;
+        return $s / 1000;
     }
 
     /**
