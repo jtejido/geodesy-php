@@ -2,6 +2,7 @@
 namespace Geodesy\Distance;
 
 use Geodesy\Location\LatLong;
+use Geodesy\Unit\Metre;
 
 
 
@@ -30,6 +31,7 @@ class DistanceTest extends \PHPUnit_Framework_TestCase
         $loc2->setLongitude($long2);
 
         $distance = new VincentyFormula($loc1, $loc2);
+        $distance->setUnit(new Metre);
 
         // this is in meters
         $this->assertEquals(

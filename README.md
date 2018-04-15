@@ -15,7 +15,7 @@ It provides distance calculations by:
 
 2. [Haversine formula](https://en.wikipedia.org/wiki/Haversine_formula)
 
-3. [Vincenty's formulae](https://en.wikipedia.org/wiki/Vincenty%27s_formulae)
+3. [Vincenty's formula](https://en.wikipedia.org/wiki/Vincenty%27s_formulae)
 
 
 Documentation
