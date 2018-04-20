@@ -3,6 +3,8 @@ namespace Geodesy\Distance;
 
 use Geodesy\Location\LatLong;
 use Geodesy\Unit\Metre;
+use Geodesy\Distance\HaversineFormula;
+use Geodesy\Distance\VincentyFormula;
 
 class DistanceTest extends \PHPUnit_Framework_TestCase
 {   

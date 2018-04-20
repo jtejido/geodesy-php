@@ -5,6 +5,7 @@ namespace Geodesy\Distance;
 use Geodesy\Location\LatLong;
 use Geodesy\Unit\UnitInterface;
 use Geodesy\Unit\KiloMetre;
+use Geodesy\Constants\Constants;
 
 abstract class BaseDistance
 {
@@ -15,14 +16,14 @@ abstract class BaseDistance
 
     protected $unit;
 
-    CONST R = 6371;
+    protected $constants;
 
     public function __construct(LatLong $source, LatLong $destination)
     {
         $this->source = $source;
         $this->destination = $destination;
-        $this->radius = self::R;
         $this->unit = new KiloMetre;
+        $this->constants = new Constants;
     }
 
     public function setUnit(UnitInterface $unit)

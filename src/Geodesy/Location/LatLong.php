@@ -2,6 +2,7 @@
 
 namespace Geodesy\Location;
 
+
 class LatLong
 {
 
@@ -9,10 +10,13 @@ class LatLong
 
     private $longitude;
 
+    private $altitude;
+
     public function __construct()
     {
         $this->latitude = null;
         $this->longitude = null;
+        $this->altitude = null;
     }
 
     public function setLatitude($lat)
@@ -25,10 +29,15 @@ class LatLong
         $this->longitude = $long;
     }
 
+    public function setAltitude($alt)
+    {
+        $this->altitude = $alt;
+    }
+
     public function getLatitude()
     {
         if($this->latitude === null) {
-        	throw new \Exception('Latitude is not set.');
+            throw new \Exception('Latitude is not set.');
         }
         return $this->latitude;
     }
@@ -36,9 +45,14 @@ class LatLong
     public function getLongitude()
     {
         if($this->longitude === null) {
-        	throw new \Exception('Longitude is not set.');
+            throw new \Exception('Longitude is not set.');
         }
         return $this->longitude;
+    }
+
+    public function getAltitude()
+    {
+        return ($this->altitude === null) ? 0 : $this->altitude;
     }
 
 }
