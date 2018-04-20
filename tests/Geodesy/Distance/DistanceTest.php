@@ -4,13 +4,6 @@ namespace Geodesy\Distance;
 use Geodesy\Location\LatLong;
 use Geodesy\Unit\Metre;
 
-
-
-/**
- * Test the FreqDist class
- *
- * @author Dan Cardin
- */
 class DistanceTest extends \PHPUnit_Framework_TestCase
 {   
     public function testVincentyDistance()

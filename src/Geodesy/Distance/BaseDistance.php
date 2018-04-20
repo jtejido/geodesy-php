@@ -4,8 +4,6 @@ namespace Geodesy\Distance;
 
 use Geodesy\Location\LatLong;
 use Geodesy\Unit\UnitInterface;
-use Geodesy\Unit\Metre;
-use Geodesy\Unit\Mile;
 use Geodesy\Unit\KiloMetre;
 
 abstract class BaseDistance
