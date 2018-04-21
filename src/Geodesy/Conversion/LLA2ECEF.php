@@ -10,6 +10,8 @@ class LLA2ECEF extends BaseConversion implements ConversionInterface
 
 	protected $latlong;
 
+	protected $ecef;
+
     public function __construct(LatLong $latlong)
     {
     	parent::__construct();

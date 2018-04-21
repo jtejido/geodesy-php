@@ -56,18 +56,18 @@ class ConversionTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(
             48.148636,
-            $distance->getLatitude()
+            $conversion->convert()->getLatitude()
         );
 
         $this->assertEquals(
             17.107558,
-            $distance->getLongitude()
+            $conversion->convert()->getLongitude()
         );
 
         // The Altitude is in Metre since new Metre is set
         $this->assertEquals(
              -4.6384229790419E-11,
-            $distance->getAltitude()
+            $conversion->convert()->getAltitude()
         );
     }
 
