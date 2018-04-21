@@ -1,6 +1,6 @@
 <?php
 
-namespace Geodesy\Distance;
+namespace Geodesy\Conversion;
 
 interface ConversionInterface
 {

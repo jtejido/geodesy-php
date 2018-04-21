@@ -75,6 +75,7 @@ class VincentyFormula extends BaseDistance implements DistanceInterface
         }
 
         $uSq = $cosSqAlpha * (pow($a, 2)- pow($b, 2)) / ($b * $b);
+        $k1 = (sqrt(1 + $uSq) - 1) / (sqrt(1 + $uSq) + 1);
         $A = 1 + $uSq / 16384
                 * (4096 + $uSq * (-768 + $uSq * (320 - 175 * $uSq)));
         $B = $uSq / 1024 * (256 + $uSq * (-128 + $uSq * (74 - 47 * $uSq)));
