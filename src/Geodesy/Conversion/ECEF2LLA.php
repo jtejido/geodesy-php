@@ -5,7 +5,7 @@ namespace Geodesy\Conversion;
 use Geodesy\Location\ECEF;
 use Geodesy\Location\LatLong;
 
-class ECEF2LLA extends BaseConversion
+class ECEF2LLA extends BaseConversion implements ConversionInterface
 {
 
     protected $ecef;
