@@ -17,6 +17,12 @@ It provides distance calculations by:
 
 3. [Vincenty's formula](https://en.wikipedia.org/wiki/Vincenty%27s_formulae)
 
+4. [Hubeny's formula](https://www.geo.tuwien.ac.at/fileadmin/editors/VGI/VGI_195403_Hubeny.pdf)
+
+5. [Thomas' formula](http://www.dtic.mil/dtic/tr/fulltext/u2/703541.pdf)
+
+6. [Andoyer-Lambert formula](https://navlib.net/wp-content/uploads/2013/10/admiralty-manual-of-navigation-vol-1-1964-english501c.pdf)
+
 
 Documentation
 =============
