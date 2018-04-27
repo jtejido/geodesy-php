@@ -4,7 +4,7 @@ namespace Geodesy\Distance;
 
 use Geodesy\Location\LatLong;
 use Geodesy\Unit\UnitInterface;
-use Geodesy\Unit\KiloMetre;
+use Geodesy\Unit\Metre;
 use Geodesy\Constants\Constants;
 
 abstract class BaseDistance
@@ -22,7 +22,7 @@ abstract class BaseDistance
     {
         $this->source = $source;
         $this->destination = $destination;
-        $this->unit = new KiloMetre;
+        $this->unit = new Metre;
         $this->constants = new Constants;
     }
 

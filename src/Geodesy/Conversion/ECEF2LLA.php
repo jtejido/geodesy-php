@@ -25,17 +25,17 @@ class ECEF2LLA extends BaseConversion implements ConversionInterface
         $y = $this->ecef->getY();
         $z = $this->ecef->getZ();
 
-        $esq = pow($this->constants::E, 2);
-        $asq = pow($this->constants::WGS_R, 2);
+        $esq = pow($this->constants::ECCENTRICITY, 2);
+        $asq = pow($this->constants::A, 2);
         $b = sqrt( $asq * (1 - $esq) );
         $bsq = pow($b, 2);
         $ep = sqrt( ($asq - $bsq) / $bsq );
         $p = sqrt( pow($x, 2) + pow($y, 2) );
-        $th = atan2($this->constants::WGS_R * $z, $b * $p);
+        $th = atan2($this->constants::A * $z, $b * $p);
 
         $long = atan2($y,$x);
-        $lat = atan2( ($z + pow($ep,2) * $b * pow(sin($th), 3) ), ($p - $esq * $this->constants::WGS_R * pow(cos($th),3)) );
-        $N = $this->constants::WGS_R / ( sqrt(1 - $esq * pow(sin($lat),2)) );
+        $lat = atan2( ($z + pow($ep,2) * $b * pow(sin($th), 3) ), ($p - $esq * $this->constants::A * pow(cos($th),3)) );
+        $N = $this->constants::A / ( sqrt(1 - $esq * pow(sin($lat),2)) );
         $alt = $p / cos($lat) - $N;
 
         $long = ($long % (2*pi())) == 0 ? $long : $long % (2*pi());

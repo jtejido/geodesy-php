@@ -12,11 +12,14 @@ class LatLong
 
     private $altitude;
 
+    private $referenceDatum;
+
     public function __construct()
     {
         $this->latitude = null;
         $this->longitude = null;
         $this->altitude = null;
+        $this->referenceDatum = null;
     }
 
     public function setLatitude($lat)

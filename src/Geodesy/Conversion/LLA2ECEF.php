@@ -27,9 +27,9 @@ class LLA2ECEF extends BaseConversion implements ConversionInterface
 
         $alt = $this->latlong->getAltitude();
 
-		$esq = pow($this->constants::E, 2);
+		$esq = pow($this->constants::ECCENTRICITY, 2);
 
-        $n = $this->constants::WGS_R / sqrt( 1 - $esq * pow(sin( $lat ), 2) );
+        $n = $this->constants::A / sqrt( 1 - $esq * pow(sin( $lat ), 2) );
 
         $this->ecef->setX($this->getUnit()->convert(( $n + $alt ) * cos( $lat ) * cos( $long )));    //ECEF x
 

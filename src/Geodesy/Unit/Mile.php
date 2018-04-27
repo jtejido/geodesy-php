@@ -8,7 +8,7 @@ class Mile extends BaseUnit implements UnitInterface
 
     public function convert($value)
     {
-        return $value * 0.62137;
+        return $value * 0.000621371;
     }
 
 }
