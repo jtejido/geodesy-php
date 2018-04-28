@@ -22,7 +22,8 @@ class LLA2ECEF extends BaseConversion implements ConversionInterface
         $this->datum = $this->latlong->getReference();
     }
 
-	public function convert(){
+	public function convert(): ECEF
+    {
 
         $lat = deg2rad($this->latlong->getLatitude());
 

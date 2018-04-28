@@ -14,7 +14,7 @@ class AndoyerLambert extends BaseDistance implements DistanceInterface
     }
 
 
-    public function distance()
+    public function distance(): float
     {
 
         $lat1 = $this->lat1;

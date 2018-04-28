@@ -13,7 +13,7 @@ class NTF extends BaseDatum implements DatumInterface
         parent::__construct(new Clarke1880IGN);
     }
 
-    public function datum()
+    public function datum(): array
     {
         return array (
             'TranslationVectors' => array(

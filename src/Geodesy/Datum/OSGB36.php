@@ -13,7 +13,7 @@ class OSGB36 extends BaseDatum implements DatumInterface
         parent::__construct(new Airy1830);
     }
 
-    public function datum()
+    public function datum(): array
     {
         return array (
             'TranslationVectors' => array(

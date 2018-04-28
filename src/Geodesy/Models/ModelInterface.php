@@ -2,6 +2,7 @@
 
 namespace Geodesy\Models;
 
+
 interface ModelInterface
 {
 

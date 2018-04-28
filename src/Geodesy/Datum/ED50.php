@@ -13,7 +13,7 @@ class ED50 extends BaseDatum implements DatumInterface
         parent::__construct(new Intl1924);
     }
 
-    public function datum()
+    public function datum(): array
     {
         return array (
             'TranslationVectors' => array(

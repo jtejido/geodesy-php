@@ -4,5 +4,5 @@ namespace Geodesy\Unit;
 
 interface UnitInterface
 {
-	public function convert($value);
+	public function convert(float $value): float;
 }

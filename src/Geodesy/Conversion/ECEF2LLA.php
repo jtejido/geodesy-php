@@ -20,7 +20,8 @@ class ECEF2LLA extends BaseConversion implements ConversionInterface
         $this->datum = $this->ecef->getReference();
     }
 
-	public function convert(){
+	public function convert(): LatLong
+    {
 
         $x = $this->ecef->getX();
         $y = $this->ecef->getY();

@@ -7,7 +7,7 @@ class Metre extends BaseUnit implements UnitInterface
 {
 
     // This is our base unit, so just return it
-    public function convert($value)
+    public function convert(float $value): float
     {
         return $value;
     }

@@ -13,7 +13,7 @@ class Irl1975 extends BaseDatum implements DatumInterface
         parent::__construct(new AiryModified);
     }
 
-    public function datum()
+    public function datum(): array
     {
         return array (
             'TranslationVectors' => array(

@@ -19,7 +19,7 @@ class HaversineFormula extends BaseDistance implements DistanceInterface
      * d = R * c
      * where φ1 = lat1, φ2 = lat2, Δφ = (lat2-lat1), Δλ = (long2-long1), R = Earth's mean radius (in kilometers)
      */
-    public function distance()
+    public function distance(): float
     {
         $lat1 = $this->lat1;
         $lat2 = $this->lat2;

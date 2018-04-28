@@ -20,72 +20,73 @@ abstract class BaseDatum
         }
     }
 
+    public abstract function datum(): array;
 
-    public function getDatum()
+    public function getDatum(): array
     {
         return $this->datum();
     }
 
-    public function getModel()
+    public function getModel(): ModelInterface
     {
         return $this->model;
     }
 
-    public function getFlattening()
+    public function getFlattening(): float
     {
         return $this->getModel()->getFlattening();
     }
 
-    public function getInverseFlattening()
+    public function getInverseFlattening(): float
     {
         return $this->getModel()->getInverseFlattening();
     }
 
-    public function getSemiMajorAxis()
+    public function getSemiMajorAxis(): float
     {
         return $this->getModel()->getSemiMajorAxis();
     }
 
-    public function getSemiMinorAxis()
+    public function getSemiMinorAxis(): float
     {
         return $this->getModel()->getSemiMinorAxis();
     }
 
-    public function getFirstEccentricitySquared()
+    public function getFirstEccentricitySquared(): float
     {
         return $this->getModel()->getFirstEccentricitySquared();
     }
 
-    public function getSecondEccentricitySquared()
+    public function getSecondEccentricitySquared(): float
     {
         return $this->getModel()->getSecondEccentricitySquared();
     }
 
-    public function transform(ECEF $ecef)
+    public function transform(ECEF $ecef): ECEF
     {
 
         return $this->helmertTransform($ecef);
     }
 
-    public function getScaleFactor()
+    public function getScaleFactor(): float
     {
 
         return $this->datum()['Scale'];
     }
 
-    public function getTranslationalVectors()
+    public function getTranslationalVectors(): array
     {
 
         return $this->datum()['TranslationVectors'];
     }
 
-    public function getRotationalVectors()
+    public function getRotationalVectors(): array
     {
 
         return $this->datum()['RotationalVectors'];
     }
 
-    private function helmertTransform(ECEF $ecef)
+    private function helmertTransform(ECEF $ecef): ECEF
     {
 
         if($ecef->getReference() instanceof $this) {

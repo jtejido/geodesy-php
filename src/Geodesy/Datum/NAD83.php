@@ -13,7 +13,7 @@ class NAD83 extends BaseDatum implements DatumInterface
         parent::__construct(new GRS80);
     }
 
-    public function datum()
+    public function datum(): array
     {
         return array (
             'TranslationVectors' => array(

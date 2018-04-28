@@ -29,27 +29,27 @@ class LatLong
         $this->referenceDatum = $datum;
     }
 
-    public function getReference()
+    public function getReference(): DatumInterface
     {
         return $this->referenceDatum;
     }
 
-    public function setLatitude($lat)
+    public function setLatitude(float $lat)
     {
         $this->latitude = $lat;
     }
 
-    public function setLongitude($long)
+    public function setLongitude(float $long)
     {
         $this->longitude = $long;
     }
 
-    public function setAltitude($alt)
+    public function setAltitude(float $alt)
     {
         $this->altitude = $alt;
     }
 
-    public function getLatitude()
+    public function getLatitude(): float
     {
         if($this->latitude === null) {
             throw new \Exception('Latitude is not set.');
@@ -57,7 +57,7 @@ class LatLong
         return $this->latitude;
     }
 
-    public function getLongitude()
+    public function getLongitude(): float
     {
         if($this->longitude === null) {
             throw new \Exception('Longitude is not set.');
@@ -65,7 +65,7 @@ class LatLong
         return $this->longitude;
     }
 
-    public function getAltitude()
+    public function getAltitude(): float
     {
         return ($this->altitude === null) ? 0 : $this->altitude;
     }

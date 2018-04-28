@@ -61,12 +61,12 @@ abstract class BaseDistance
         $this->unit = $unit;
     }
 
-    public function getUnit()
+    public function getUnit(): UnitInterface
     {
         return $this->unit;
     }
 
-    public function getDistance()
+    public function getDistance(): float
     {
         if($this->commonDatum !== null) {
             return $this->getUnit()->convert($this->distance());
@@ -85,24 +85,24 @@ abstract class BaseDistance
 
     }
 
-    public function getSemiMajorAxis()
+    public function getSemiMajorAxis(): float
     {
         return $this->commonDatum->getSemiMajorAxis();
     }
 
-    public function getSemiMinorAxis()
+    public function getSemiMinorAxis(): float
     {
         return $this->commonDatum->getSemiMinorAxis();
     }
 
-    public function getInverseFlattening()
+    public function getInverseFlattening(): float
     {
         return $this->commonDatum->getInverseFlattening();
     }
 
-    abstract public function distance();
+    abstract public function distance(): float;
 
-    public function isInRange($range)
+    public function isInRange(float $range)
     {
         return $this->getDistance() <= $this->getUnit()->convert($range);
     }

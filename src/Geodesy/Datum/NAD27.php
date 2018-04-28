@@ -13,7 +13,7 @@ class NAD27 extends BaseDatum implements DatumInterface
         parent::__construct(new Clarke1866);
     }
 
-    public function datum()
+    public function datum(): array
     {
         return array (
             'TranslationVectors' => array(

@@ -32,27 +32,27 @@ class ECEF
         $this->referenceDatum = $datum;
     }
 
-    public function getReference()
+    public function getReference(): DatumInterface
     {
         return $this->referenceDatum;
     }
 
-    public function setX($x)
+    public function setX(float $x)
     {
         $this->x = $x;
     }
 
-    public function setY($y)
+    public function setY(float $y)
     {
         $this->y = $y;
     }
 
-    public function setZ($z)
+    public function setZ(float $z)
     {
         $this->z = $z;
     }
 
-    public function getX()
+    public function getX(): float
     {
         if($this->x === null) {
         	throw new \Exception('X is not set.');
@@ -60,7 +60,7 @@ class ECEF
         return $this->x;
     }
 
-    public function getY()
+    public function getY(): float
     {
         if($this->y === null) {
         	throw new \Exception('Y is not set.');
@@ -68,7 +68,7 @@ class ECEF
         return $this->y;
     }
 
-    public function getZ()
+    public function getZ(): float
     {
         return ($this->z === null) ? 0 : $this->z;
     }

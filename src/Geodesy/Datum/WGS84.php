@@ -13,7 +13,7 @@ class WGS84 extends BaseDatum implements DatumInterface
         parent::__construct(new WGS84Model);
     }
 
-    public function datum()
+    public function datum(): array
     {
         return array (
             'TranslationVectors' => array(

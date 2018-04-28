@@ -13,7 +13,7 @@ class TokyoJapan extends BaseDatum implements DatumInterface
         parent::__construct(new Bessel1841);
     }
 
-    public function datum()
+    public function datum(): array
     {
         return array (
             'TranslationVectors' => array(

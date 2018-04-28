@@ -5,6 +5,6 @@ namespace Geodesy\Distance;
 interface DistanceInterface
 {
 
-    public function distance();
+    public function distance(): float;
     
 }

@@ -13,7 +13,7 @@ class PRS92 extends BaseDatum implements DatumInterface
         parent::__construct(new PRS92Model);
     }
 
-    public function datum()
+    public function datum(): array
     {
         return array (
             'TranslationVectors' => array(

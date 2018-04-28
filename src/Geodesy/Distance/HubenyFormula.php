@@ -14,7 +14,7 @@ class HubenyFormula extends BaseDistance implements DistanceInterface
     }
 
 
-    public function distance()
+    public function distance(): float
     {
         $lat1 = $this->lat1;
         $lat2 = $this->lat2;
@@ -23,7 +23,7 @@ class HubenyFormula extends BaseDistance implements DistanceInterface
         $a = $this->getSemiMajorAxis();
         $b = $this->getSemiMinorAxis();
         $f = $this->getInverseFlattening();
-        $f2 = ($b * $b) / ($a * $a);
+        $f2 = pow($b, 2) / pow($a, 2);
         $e2 = 1.0 - $f2;
 
         $lat_diff = ($lat1 - $lat2);
@@ -31,18 +31,13 @@ class HubenyFormula extends BaseDistance implements DistanceInterface
         $lat_average = 0.5 * ($lat1 + $lat2);
         $sinlat_average = sin($lat_average);
         $coslat_average = cos($lat_average);
-        $w2 = 1.0 - $sinlat_average * $sinlat_average * $e2;
+        $w2 = 1.0 - pow($sinlat_average, 2) * $e2;
         $w = sqrt($w2);
         $meridian = $a * $f2 / ($w2 * $w);
         $n = $a / $w;
 
-        return sqrt(
-        $lat_diff * $lat_diff * $meridian * $meridian +
-        $long_diff * $long_diff * $n * $n * $coslat_average * $coslat_average
-        );
+        return sqrt(pow($lat_diff, 2) * pow($meridian, 2) + pow($long_diff, 2) * pow($n, 2) * pow($coslat_average, 2));
 
-
-        return $a*($spherical_distance+$delta);
     }
 
 }
