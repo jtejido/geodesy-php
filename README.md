@@ -5,9 +5,7 @@
 Geodesy-PHP
 =============
 
-Geodesy-PHP is a PHP port of some known geodesic functions for getting distance from a known point A to a known point B, given their latitude and longitude (good for working out distances between latitude/longitude data provided by Google Maps or any Restful APIs).
-
-This has been helpful to me at a time when working out the distance between different vendors and the user's current location (and check if they're within a certain range) and has grown beyond my simple use case to finally becoming a library.
+Geodesy-PHP is a PHP port of some known geodesic functions for getting distance from a known point A to a known point B, given their latitude and longitude (good for working out distances between latitude/longitude data provided by Google Geolocation or any RESTful APIs).
 
 It also supports conversion between units of length, between Geographical position to Cartesian, and between different Reference Datums.
 

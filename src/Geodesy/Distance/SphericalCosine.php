@@ -23,7 +23,7 @@ class SphericalCosine extends BaseDistance implements DistanceInterface
         $long1 = $this->long1;
         $long2 = $this->long2;
         $long_diff = $long2 - $long1;
-        return acos(pow(sin($lat1), 2) + pow(cos($lat1), 3) ) * $this->constants::SPHERICAL_R;
+        return round(acos(pow(sin($lat1), 2) + pow(cos($lat1), 3) ) * $this->constants::SPHERICAL_R, 3);
     }  
 
 }

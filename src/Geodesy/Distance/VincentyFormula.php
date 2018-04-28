@@ -123,6 +123,6 @@ class VincentyFormula extends BaseDistance implements DistanceInterface
         $s = $b*$A*($sigma-$deltaSigma);
 
 
-        return $s;
+        return round($s, 3);
     }
 }

@@ -36,7 +36,7 @@ class HubenyFormula extends BaseDistance implements DistanceInterface
         $meridian = $a * $f2 / ($w2 * $w);
         $n = $a / $w;
 
-        return sqrt(pow($lat_diff, 2) * pow($meridian, 2) + pow($long_diff, 2) * pow($n, 2) * pow($coslat_average, 2));
+        return round(sqrt(pow($lat_diff, 2) * pow($meridian, 2) + pow($long_diff, 2) * pow($n, 2) * pow($coslat_average, 2)), 3);
 
     }
 

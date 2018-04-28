@@ -35,7 +35,7 @@ class AndoyerLambert extends BaseDistance implements DistanceInterface
         $s = (sin($spherical_distance) + $spherical_distance) * (sin($rLat1)-sin($rLat2))*(sin($rLat1)-sin($rLat2)) / pow($sinSd,2);
         $delta = $f / 8.0 * ($c-$s);
 
-        return $a*($spherical_distance+$delta);
+        return round($a * ($spherical_distance+$delta), 3);
     }
 
 }

@@ -59,7 +59,7 @@ class ThomasFormula extends BaseDistance implements DistanceInterface
         $d1d = $F * ($t * $x - $y)/4.0;
         $d2d = $F * $F * ($n1 - $n2 + $n3)/64.0;
 
-        return $A * ($t - $d1d + $d2d) * sin($d);
+        return round($A * ($t - $d1d + $d2d) * sin($d), 3);
     }
 
 }
