@@ -46,10 +46,11 @@ abstract class BaseDistance
         $this->long2 = deg2rad($this->destination->getLongitude());
         $this->destinationDatum = $this->destination->getReference();
 
+
         if(!$this->sourceDatum instanceof $this->destinationDatum) {
             $this->transformSource($this->destinationDatum);
         } else {
-            $this->commonDatum = $this->sourceDatum->getReference();
+            $this->commonDatum = $this->sourceDatum;
         }
 
         $this->unit = new Metre; // default unit

@@ -105,17 +105,17 @@ class VincentyFormula extends BaseDistance implements DistanceInterface
         $uSq = $cosSqAlpha * (pow($a, 2) - pow($b,2)) / pow($b ,2);
 
         /**
-         * we'll use Helmert's expansion for A and B
-         */
+         we'll use Helmert's expansion for A and B
+         
          $k1 = (sqrt(1 + $uSq) - 1) / (sqrt(1 + $uSq) + 1);
          $A = 1 + ((1/4) * pow($k1, 2)) / (1 - $k1);
          $B = $k1 * (1 - ((3/8) * pow($k1, 2)));
+        */
 
 
-       /**
         $A = 1 + $uSq/16384*(4096+$uSq*(-768+$uSq*(320-175*$uSq)));
         $B = $uSq/1024 * (256+$uSq*(-128+$uSq*(74-47*$uSq)));
-        */
+
 
         $deltaSigma = $B*$sinSigma*($cos2SigmaM+$B/4*($cosSigma*(-1+2*pow($cos2SigmaM, 2))-
             $B/6*$cos2SigmaM*(-3+4*pow($sinSigma, 2))*(-3+4* pow($cos2SigmaM, 2))));
