@@ -23,13 +23,13 @@ class VincentyFormula extends BaseDistance implements DistanceInterface
     public function distance()
     {
 
-        $lat1 = deg2rad($this->source->getLatitude());
-        $lat2 = deg2rad($this->destination->getLatitude());
-        $long1 = deg2rad($this->source->getLongitude());
-        $long2 = deg2rad($this->destination->getLongitude());
-        $a = $this->constants::A;
-        $b = $this->constants::B;
-        $f = $this->constants::F;
+        $lat1 = $this->lat1;
+        $lat2 = $this->lat2;
+        $long1 = $this->long1;
+        $long2 = $this->long2;
+        $a = $this->getSemiMajorAxis();
+        $b = $this->getSemiMinorAxis();
+        $f = $this->getInverseFlattening();
         $L = $long2 - $long1;
         $tanU1 = (1-$f) * tan($lat1);
         $tanU2 = (1-$f) * tan($lat2);

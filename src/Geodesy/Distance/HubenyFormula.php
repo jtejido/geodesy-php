@@ -16,13 +16,13 @@ class HubenyFormula extends BaseDistance implements DistanceInterface
 
     public function distance()
     {
-        $lat1 = deg2rad($this->source->getLatitude());
-        $lat2 = deg2rad($this->destination->getLatitude());
-        $long1 = deg2rad($this->source->getLongitude());
-        $long2 = deg2rad($this->destination->getLongitude());
-        $a = $this->constants::A;
-        $b = $this->constants::B;
-        $f = $this->constants::F;
+        $lat1 = $this->lat1;
+        $lat2 = $this->lat2;
+        $long1 = $this->long1;
+        $long2 = $this->long2;
+        $a = $this->getSemiMajorAxis();
+        $b = $this->getSemiMinorAxis();
+        $f = $this->getInverseFlattening();
         $f2 = ($b * $b) / ($a * $a);
         $e2 = 1.0 - $f2;
 

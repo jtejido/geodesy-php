@@ -16,15 +16,19 @@ class ThomasFormula extends BaseDistance implements DistanceInterface
 
     public function distance()
     {
+        $lat1 = $this->lat1;
+        $lat2 = $this->lat2;
+        $long1 = $this->long1;
+        $long2 = $this->long2;
+        $A = $this->getSemiMajorAxis();
+        $F = $this->getInverseFlattening();
 
-        $A = $this->constants::A;
-        $F = $this->constants::F;
-        $ac = deg2rad($this->source->getLatitude());
-        $ad = -deg2rad($this->source->getLongitude());
+        $ac = $lat1;
+        $ad = -$long1;
         $ac = atan((1.0-$F) * tan($ac));
 
-        $ae = deg2rad($this->destination->getLatitude());
-        $af = -deg2rad($this->destination->getLongitude());
+        $ae = $lat2;
+        $af = -$long2;
         $ae = atan((1.0-$F) * tan($ae));
         
 

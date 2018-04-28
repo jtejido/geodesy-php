@@ -2,6 +2,9 @@
 
 namespace Geodesy\Location;
 
+use Geodesy\Datum\WGS84;
+use Geodesy\Datum\DatumInterface;
+
 class ECEF
 {
     /**
@@ -14,11 +17,24 @@ class ECEF
 
     private $z;
 
+    private $referenceDatum;
+
     public function __construct()
     {
         $this->x = null;
         $this->y = null;
         $this->z = null;
+        $this->referenceDatum = new WGS84;
+    }
+
+    public function setReference(DatumInterface $datum)
+    {
+        $this->referenceDatum = $datum;
+    }
+
+    public function getReference()
+    {
+        return $this->referenceDatum;
     }
 
     public function setX($x)

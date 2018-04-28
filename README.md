@@ -24,6 +24,9 @@ It provides distance calculations by:
 6. [Andoyer-Lambert formula](https://navlib.net/wp-content/uploads/2013/10/admiralty-manual-of-navigation-vol-1-1964-english501c.pdf)
 
 
+It can also convert units and coordinate reference frames.
+
+
 Documentation
 =============
 

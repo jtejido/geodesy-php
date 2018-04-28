@@ -12,11 +12,14 @@ class LLA2ECEF extends BaseConversion implements ConversionInterface
 
 	protected $ecef;
 
+	protected $datum;
+
     public function __construct(LatLong $latlong)
     {
     	parent::__construct();
         $this->ecef = new ECEF;
         $this->latlong = $latlong;
+        $this->datum = $this->latlong->getReference();
     }
 
 	public function convert(){
@@ -27,9 +30,11 @@ class LLA2ECEF extends BaseConversion implements ConversionInterface
 
         $alt = $this->latlong->getAltitude();
 
-		$esq = pow($this->constants::ECCENTRICITY, 2);
+		$esq = $this->datum->getFirstEccentricitySquared();
 
-        $n = $this->constants::A / sqrt( 1 - $esq * pow(sin( $lat ), 2) );
+        $n = $this->datum->getSemiMajorAxis() / sqrt( 1 - $esq * pow(sin( $lat ), 2) );
+
+        $this->ecef->setReference($this->datum);  // retain datum reference
 
         $this->ecef->setX($this->getUnit()->convert(( $n + $alt ) * cos( $lat ) * cos( $long )));    //ECEF x
 

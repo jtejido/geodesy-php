@@ -2,6 +2,8 @@
 
 namespace Geodesy\Location;
 
+use Geodesy\Datum\WGS84;
+use Geodesy\Datum\DatumInterface;
 
 class LatLong
 {
@@ -19,7 +21,17 @@ class LatLong
         $this->latitude = null;
         $this->longitude = null;
         $this->altitude = null;
-        $this->referenceDatum = null;
+        $this->referenceDatum = new WGS84;
+    }
+
+    public function setReference(DatumInterface $datum)
+    {
+        $this->referenceDatum = $datum;
+    }
+
+    public function getReference()
+    {
+        return $this->referenceDatum;
     }
 
     public function setLatitude($lat)

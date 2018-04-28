@@ -5,14 +5,24 @@ namespace Geodesy\Distance;
 use Geodesy\Location\LatLong;
 use Geodesy\Unit\UnitInterface;
 use Geodesy\Unit\Metre;
+use Geodesy\Conversion\LLA2ECEF;
+use Geodesy\Conversion\ECEF2LLA;
 use Geodesy\Constants\Constants;
+use Geodesy\Datum\WGS84;
+use Geodesy\Datum\DatumInterface;
 
 abstract class BaseDistance
 {
 
 	protected $source;
 
+    protected $sourceDatum;
+
     protected $destination;
+
+    protected $destinationDatum;
+
+    protected $commonDatum;
 
     protected $unit;
 
@@ -22,8 +32,32 @@ abstract class BaseDistance
     {
         $this->source = $source;
         $this->destination = $destination;
-        $this->unit = new Metre;
-        $this->constants = new Constants;
+        $this->commonDatum = null;
+
+        if ($this->source === null || $this->destination === null) {
+            throw new \Exception('Source or Destination cannot be null');
+        }
+
+        if ($this->source === null || $this->destination === null) {
+            throw new \Exception('Source or Destination cannot be null');
+        }
+
+        $this->lat1 = deg2rad($this->source->getLatitude());
+        $this->long1 = deg2rad($this->source->getLongitude());
+        $this->sourceDatum = $this->source->getReference();
+
+        $this->lat2 = deg2rad($this->destination->getLatitude());
+        $this->long2 = deg2rad($this->destination->getLongitude());
+        $this->destinationDatum = $this->destination->getReference();
+
+        if(!$this->sourceDatum instanceof $this->destinationDatum) {
+            $this->transformSource($this->destinationDatum);
+        } else {
+            $this->commonDatum = $this->sourceDatum->getReference();
+        }
+
+        $this->unit = new Metre; // default unit
+        $this->constants = new Constants; // for spherical formulas
     }
 
     public function setUnit(UnitInterface $unit)
@@ -38,7 +72,36 @@ abstract class BaseDistance
 
     public function getDistance()
     {
-        return $this->getUnit()->convert($this->distance());
+        if($this->commonDatum !== null) {
+            return $this->getUnit()->convert($this->distance());
+        }
+    }
+
+    public function transformSource(DatumInterface $datum)
+    {
+
+        $lla2ecef = new LLA2ECEF($this->source);
+        $source_ecef = $lla2ecef->convert();
+        $new_ecef = $datum->transform($source_ecef);
+        $ecef2lla = new ECEF2LLA($new_ecef);
+        $this->source = $ecef2lla->convert();
+        $this->commonDatum = $datum;
+
+    }
+
+    public function getSemiMajorAxis()
+    {
+        return $this->commonDatum->getSemiMajorAxis();
+    }
+
+    public function getSemiMinorAxis()
+    {
+        return $this->commonDatum->getSemiMinorAxis();
+    }
+
+    public function getInverseFlattening()
+    {
+        return $this->commonDatum->getInverseFlattening();
     }
 
     abstract public function distance();

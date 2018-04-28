@@ -11,7 +11,6 @@ abstract class BaseConversion
     
     protected $unit;
 
-    protected $constants;
 
     /**
      * https://en.wikipedia.org/wiki/Geographic_coordinate_conversion
@@ -22,7 +21,6 @@ abstract class BaseConversion
 
     public function __construct()
     {
-        $this->constants = new Constants;
         $this->unit = new Metre;
     }
 

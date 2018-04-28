@@ -21,10 +21,10 @@ class HaversineFormula extends BaseDistance implements DistanceInterface
      */
     public function distance()
     {
-        $lat1 = deg2rad($this->source->getLatitude());
-        $lat2 = deg2rad($this->destination->getLatitude());
-        $long1 = deg2rad($this->source->getLongitude());
-        $long2 = deg2rad($this->destination->getLongitude());
+        $lat1 = $this->lat1;
+        $lat2 = $this->lat2;
+        $long1 = $this->long1;
+        $long2 = $this->long2;
         $long_diff = $long2 - $long1;
         $lat_diff = $lat2 - $lat1;
         $a = pow(sin($lat_diff/2), 2) + cos($lat1) * cos($lat2) * pow(sin($long_diff/2), 2);
