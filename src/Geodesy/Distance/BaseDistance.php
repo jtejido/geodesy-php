@@ -38,10 +38,6 @@ abstract class BaseDistance
             throw new \Exception('Source or Destination cannot be null');
         }
 
-        if ($this->source === null || $this->destination === null) {
-            throw new \Exception('Source or Destination cannot be null');
-        }
-
         $this->lat1 = deg2rad($this->source->getLatitude());
         $this->long1 = deg2rad($this->source->getLongitude());
         $this->sourceDatum = $this->source->getReference();
