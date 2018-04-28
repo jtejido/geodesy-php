@@ -9,6 +9,8 @@ Geodesy-PHP is a PHP port of some known geodesic functions for getting distance 
 
 This has been helpful to me at a time when working out the distance between different vendors and the user's location (and check if they're within a certain range).
 
+It also supports conversion between units of length, between Geographical position to Cartesian, and between different Reference Datums.
+
 It provides distance calculations by:
 
 1. [Spherical Law of Cosines](https://en.wikipedia.org/wiki/Spherical_law_of_cosines) 
@@ -22,9 +24,6 @@ It provides distance calculations by:
 5. [Thomas' formula](http://www.dtic.mil/dtic/tr/fulltext/u2/703541.pdf)
 
 6. [Andoyer-Lambert formula](https://navlib.net/wp-content/uploads/2013/10/admiralty-manual-of-navigation-vol-1-1964-english501c.pdf)
-
-
-It can also convert units and coordinate reference frames.
 
 
 Documentation
