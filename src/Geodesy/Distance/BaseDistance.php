@@ -22,7 +22,7 @@ abstract class BaseDistance
 
     private $unit;
 
-    private $constants;
+    protected $constants;
 
     public function __construct(LatLong $source, LatLong $destination)
     {
