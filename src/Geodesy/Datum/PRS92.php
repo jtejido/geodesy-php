@@ -17,14 +17,14 @@ class PRS92 extends BaseDatum implements DatumInterface
     {
         return array (
             'TranslationVectors' => array(
-                'x' => 127.62195,
-                'y' => 67.24478,
-                'z' => 47.04305,
+                'x' => 127.62153,
+                'y' => 67.24339,
+                'z' => 47.04738,
                 ),
             'RotationalVectors' => array (
-                'x' => -1.48722,
-                'y' => 2.37700,
-                'z' => 7.64988,
+                'x' => -3.06803,
+                'y' => 4.90297,
+                'z' => 1.57807,
                 ),
             'Scale' => 1.06002,
         );

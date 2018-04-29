@@ -80,7 +80,7 @@ abstract class BaseDatum
     // Burka-Wolf simplification of Helmert Transformation
     private function helmertTransform(ECEF $ecef): ECEF
     {
-        // if converting back to wgs84, use the inverse
+        // if converting to wgs84, use the inverse
         if ($this instanceof WGS84){
             $original = $ecef->getReference();
             $array = $original->getDatum(true);

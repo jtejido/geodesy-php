@@ -38,15 +38,10 @@ abstract class BaseDistance
 
         $this->commonDatum = $destinationDatum;
         
-        if($sourceDatum instanceof WGS84) {
+        if($sourceDatum instanceof WGS84 || $destinationDatum instanceof WGS84) {
             $this->transformSourceTo($destinationDatum);
-            $this->commonDatum = $destinationDatum;
         }
 
-        if($destinationDatum instanceof WGS84) {
-            $this->transformSourceTo(new WGS84);
-            $this->commonDatum = new WGS84;
-        }
         if(!$sourceDatum instanceof WGS84 && !$destinationDatum instanceof WGS84) {
             if(!$sourceDatum instanceof $destinationDatum) {
                 // convert to WGS84 first, then to destination's datum
@@ -101,7 +96,6 @@ abstract class BaseDistance
         $new_ecef = $datum->transform($source_ecef);
         $ecef2lla = new ECEF2LLA($new_ecef);
         $this->source =  $ecef2lla->convert();
-
     }
 
     protected function getSemiMajorAxis(): float
@@ -119,7 +113,7 @@ abstract class BaseDistance
         return $this->commonDatum->getInverseFlattening();
     }
 
-    public function isInRange(float $range)
+    public function isInRange(float $range): bool
     {
         return $this->getDistance() <= $this->getUnit()->convert($range);
     }
