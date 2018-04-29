@@ -9,7 +9,7 @@ use Geodesy\Models\ModelInterface;
 abstract class BaseDatum
 {
     
-    protected $model;
+    private $model;
 
     public function __construct(ModelInterface $model)
     {
@@ -22,9 +22,18 @@ abstract class BaseDatum
 
     public abstract function datum(): array;
 
-    public function getDatum(): array
+    public function getDatum(bool $toWGS = false): array
     {
-        return $this->datum();
+        $array = $this->datum();
+        
+        if($toWGS) {
+            array_walk_recursive($array, function (&$item, $key) 
+                {
+                   $item *= -1;
+                }
+            );
+        }
+        return $array;
     }
 
     public function getModel(): ModelInterface
@@ -68,37 +77,24 @@ abstract class BaseDatum
         return $this->helmertTransform($ecef);
     }
 
-    public function getScaleFactor(): float
-    {
-
-        return $this->datum()['Scale'];
-    }
-
-    public function getTranslationalVectors(): array
-    {
-
-        return $this->datum()['TranslationVectors'];
-    }
-
-    public function getRotationalVectors(): array
-    {
-
-        return $this->datum()['RotationalVectors'];
-    }
-
+    // Burka-Wolf simplification of Helmert Transformation
     private function helmertTransform(ECEF $ecef): ECEF
     {
-
-        if($ecef->getReference() instanceof $this) {
-            return $ecef;
+        // if converting back to wgs84, use the inverse
+        if ($this instanceof WGS84){
+            $original = $ecef->getReference();
+            $array = $original->getDatum(true);
+        } else {
+            $array = $this->getDatum();
         }
 
         $x1 = $ecef->getX();
         $y1 = $ecef->getY();
         $z1 = $ecef->getZ();
-        $t  =  $this->getTranslationalVectors();
-        $r  =  $this->getRotationalVectors();
-        $s  =  $this->getScaleFactor();
+        $t  =  $array['TranslationVectors'];
+        $r  =  $array['RotationalVectors'];
+        $s  =  $array['Scale'];
+        
 
         $tx = $t['x']; 
         $ty = $t['y'];

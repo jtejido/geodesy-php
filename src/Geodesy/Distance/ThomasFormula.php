@@ -14,12 +14,13 @@ class ThomasFormula extends BaseDistance implements DistanceInterface
     }
 
 
-    public function distance(): float
+    protected function distance(): float
     {
-        $lat1 = $this->lat1;
-        $lat2 = $this->lat2;
-        $long1 = $this->long1;
-        $long2 = $this->long2;
+        $lat1 = $this->getSourceLatitude();
+        $lat2 = $this->getDestinationLatitude();
+        $long1 = $this->getSourceLongitude();
+        $long2 = $this->getDestinationLongitude();
+
         $A = $this->getSemiMajorAxis();
         $F = $this->getInverseFlattening();
 

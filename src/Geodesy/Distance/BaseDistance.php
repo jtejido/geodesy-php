@@ -14,47 +14,69 @@ use Geodesy\Datum\DatumInterface;
 abstract class BaseDistance
 {
 
-	protected $source;
+	private $source;
 
-    protected $sourceDatum;
+    private $destination;
 
-    protected $destination;
+    private $commonDatum;
 
-    protected $destinationDatum;
+    private $unit;
 
-    protected $commonDatum;
-
-    protected $unit;
-
-    protected $constants;
+    private $constants;
 
     public function __construct(LatLong $source, LatLong $destination)
     {
         $this->source = $source;
         $this->destination = $destination;
-        $this->commonDatum = null;
 
         if ($this->source === null || $this->destination === null) {
             throw new \Exception('Source or Destination cannot be null');
         }
 
-        $this->lat1 = deg2rad($this->source->getLatitude());
-        $this->long1 = deg2rad($this->source->getLongitude());
-        $this->sourceDatum = $this->source->getReference();
+        $sourceDatum = $this->source->getReference();
+        $destinationDatum = $this->destination->getReference();
 
-        $this->lat2 = deg2rad($this->destination->getLatitude());
-        $this->long2 = deg2rad($this->destination->getLongitude());
-        $this->destinationDatum = $this->destination->getReference();
-
-
-        if(!$this->sourceDatum instanceof $this->destinationDatum) {
-            $this->transformSource($this->destinationDatum);
-        } else {
-            $this->commonDatum = $this->sourceDatum;
+        $this->commonDatum = $destinationDatum;
+        
+        if($sourceDatum instanceof WGS84) {
+            $this->transformSourceTo($destinationDatum);
+            $this->commonDatum = $destinationDatum;
         }
 
+        if($destinationDatum instanceof WGS84) {
+            $this->transformSourceTo(new WGS84);
+            $this->commonDatum = new WGS84;
+        }
+        if(!$sourceDatum instanceof WGS84 && !$destinationDatum instanceof WGS84) {
+            if(!$sourceDatum instanceof $destinationDatum) {
+                // convert to WGS84 first, then to destination's datum
+                $this->transformSourceTo(new WGS84);
+                $this->transformSourceTo($destinationDatum);
+            }
+        }    
+       
         $this->unit = new Metre; // default unit
         $this->constants = new Constants; // for spherical formulas
+    }
+
+    protected function getSourceLatitude(): float
+    {
+        return deg2rad($this->source->getLatitude());
+    }
+
+    protected function getSourceLongitude(): float
+    {
+        return deg2rad($this->source->getLongitude());
+    }
+
+    protected function getDestinationLatitude(): float
+    {
+        return deg2rad($this->destination->getLatitude());
+    }
+
+    protected function getDestinationLongitude(): float
+    {
+        return deg2rad($this->destination->getLongitude());
     }
 
     public function setUnit(UnitInterface $unit)
@@ -62,46 +84,40 @@ abstract class BaseDistance
         $this->unit = $unit;
     }
 
-    public function getUnit(): UnitInterface
+    private function getUnit(): UnitInterface
     {
         return $this->unit;
     }
 
     public function getDistance(): float
     {
-        if($this->commonDatum !== null) {
-            return $this->getUnit()->convert($this->distance());
-        }
+        return $this->getUnit()->convert($this->distance());
     }
 
-    public function transformSource(DatumInterface $datum)
+    private function transformSourceTo(DatumInterface $datum)
     {
-
         $lla2ecef = new LLA2ECEF($this->source);
         $source_ecef = $lla2ecef->convert();
         $new_ecef = $datum->transform($source_ecef);
         $ecef2lla = new ECEF2LLA($new_ecef);
-        $this->source = $ecef2lla->convert();
-        $this->commonDatum = $datum;
+        $this->source =  $ecef2lla->convert();
 
     }
 
-    public function getSemiMajorAxis(): float
+    protected function getSemiMajorAxis(): float
     {
         return $this->commonDatum->getSemiMajorAxis();
     }
 
-    public function getSemiMinorAxis(): float
+    protected function getSemiMinorAxis(): float
     {
         return $this->commonDatum->getSemiMinorAxis();
     }
 
-    public function getInverseFlattening(): float
+    protected function getInverseFlattening(): float
     {
         return $this->commonDatum->getInverseFlattening();
     }
-
-    abstract public function distance(): float;
 
     public function isInRange(float $range)
     {

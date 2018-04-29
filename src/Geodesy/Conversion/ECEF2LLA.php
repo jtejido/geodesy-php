@@ -8,9 +8,11 @@ use Geodesy\Location\LatLong;
 class ECEF2LLA extends BaseConversion implements ConversionInterface
 {
 
-    protected $ecef;
+    private $ecef;
 
-    protected $latlong;
+    private $latlong;
+
+    private $datum;
 
     public function __construct(ECEF $ecef)
     {
