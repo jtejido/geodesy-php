@@ -35,10 +35,11 @@ It provides distance calculations by:
 
 
 
-All units are in Base Metre. It converts distance values to:
-
-
 ## Unit Conversion ##
+
+
+All operations are set in *Metre*. But it can also convert distance (and other transformation) values to:
+
 
 1. Kilometre
 
@@ -50,11 +51,11 @@ All units are in Base Metre. It converts distance values to:
 
 
 
-
-It also allows coordinate conversions between the ff:
-
-
 ## Position Conversion ##
+
+
+It also allows coordinate/geographical conversions between the ff:
+
 
 1. Polar to Cartesian
 
@@ -66,10 +67,13 @@ It also allows coordinate conversions between the ff:
 
 
 
-Reference Datums are, and will become, WGS84. It also comes with some pre-built datums (though very limited as it has little use for me aside from WGS84 at the time of writing this) and also allows transformation between them.
-
-
 ## Transformation Options ##
+
+
+Reference Datums are, by default, set to WGS84. You can also transform one coordinate taken from a different source to another (see [this](https://epsg.io/) for reference), as it also comes with some pre-built datums (though very limited in number as it has little use for me aside from WGS84, i.e. at the time of writing this). 
+
+The following are the transformer options:
+
 
 1. 3-Parameter Molodensky Transformer
 
