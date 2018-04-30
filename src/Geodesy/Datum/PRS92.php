@@ -2,7 +2,7 @@
 
 namespace Geodesy\Datum;
 
-use Geodesy\Models\PRS92Model;
+use Geodesy\Models\Clarke1866;
 
 class PRS92 extends BaseDatum implements DatumInterface
 {
@@ -10,7 +10,7 @@ class PRS92 extends BaseDatum implements DatumInterface
 
     public function __construct()
     {
-        parent::__construct(new PRS92Model);
+        parent::__construct(new Clarke1866);
     }
 
     public function datum(): array
@@ -22,9 +22,9 @@ class PRS92 extends BaseDatum implements DatumInterface
                 'z' => 47.04738,
                 ),
             'RotationalVectors' => array (
-                'x' => -3.06803,
-                'y' => 4.90297,
-                'z' => 1.57807,
+                'x' => 3.06803,
+                'y' => -4.90297,
+                'z' => -1.57807,
                 ),
             'Scale' => 1.06002,
         );

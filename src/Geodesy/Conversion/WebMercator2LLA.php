@@ -27,6 +27,7 @@ class WebMercator2LLA extends BaseConversion implements ConversionInterface
     {
 
         $x = $this->webmercator->getX();
+        
         $y = $this->webmercator->getY();
 
         $f = $this->datum->getSemiMajorAxis();

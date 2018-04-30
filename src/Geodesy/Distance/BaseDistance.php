@@ -9,25 +9,29 @@ use Geodesy\Conversion\LLA2ECEF;
 use Geodesy\Conversion\ECEF2LLA;
 use Geodesy\Datum\WGS84;
 use Geodesy\Datum\DatumInterface;
+use Geodesy\Transformer\TransformerInterface;
+use Geodesy\Transformer\MolodenskyBadekasTransform;
 
 abstract class BaseDistance
 {
 
-	public $source;
+	protected $source;
 
-    private $destination;
+    protected $destination;
 
-    private $commonDatum;
+    protected $commonDatum;
 
-    private $unit;
+    protected $unit;
+
+    protected $transformer;
 
     public function __construct(LatLong $source, LatLong $destination)
     {
         $this->source = $source;
         $this->destination = $destination;
         $this->unit = new Metre; // default unit
-        $this->commonDatum = $this->destination->getReference();
-        $this->checkDatum();
+        $this->commonDatum = new WGS84;
+        $this->transformer = new MolodenskyBadekasTransform;
     }
 
     protected function getSourceLatitude(): float
@@ -50,18 +54,29 @@ abstract class BaseDistance
         return deg2rad($this->destination->getLongitude());
     }
 
+    public function setTransformer(TransformerInterface $transformer)
+    {
+        $this->transformer = $transformer;
+    }
+
+    public function getTransformer(): TransformerInterface
+    {
+        return $this->transformer;
+    }
+
     public function setUnit(UnitInterface $unit)
     {
         $this->unit = $unit;
     }
 
-    private function getUnit(): UnitInterface
+    protected function getUnit(): UnitInterface
     {
         return $this->unit;
     }
 
     public function getDistance(): float
     {
+        $this->checkDatum();
         return $this->getUnit()->convert($this->distance());
     }
 
@@ -71,27 +86,14 @@ abstract class BaseDistance
         $sourceDatum = $this->source->getReference();
         $destinationDatum = $this->destination->getReference();
 
-        if($sourceDatum instanceof WGS84 || $destinationDatum instanceof WGS84) {
-            $this->transformSourceTo($destinationDatum);
-        }
-
-        if(!$sourceDatum instanceof WGS84 && !$destinationDatum instanceof WGS84) {
-            if(!$sourceDatum instanceof $destinationDatum) {
-                // convert to WGS84 first, then to destination's datum
-                $this->transformSourceTo(new WGS84);
-                $this->transformSourceTo($destinationDatum);
+        if(!$sourceDatum instanceof WGS84 || !$destinationDatum instanceof WGS84) {
+            if(!$sourceDatum instanceof WGS84) {
+                $this->source = $this->getTransformer()->transform($this->source, new WGS84);
+            }
+            if(!$destinationDatum instanceof WGS84) {
+                $this->destination = $this->getTransformer()->transform($this->destination, new WGS84);
             }
         }
-
-    }
-
-    private function transformSourceTo(DatumInterface $datum)
-    {
-        $lla2ecef = new LLA2ECEF($this->source);
-        $source_ecef = $lla2ecef->convert();
-        $new_ecef = $datum->transform($source_ecef);
-        $ecef2lla = new ECEF2LLA($new_ecef);
-        $this->source = $ecef2lla->convert();
     }
 
     protected function getSemiMajorAxis(): float

@@ -3,6 +3,7 @@
 namespace Geodesy\Datum;
 
 use Geodesy\Location\ECEF;
+use Geodesy\Location\LatLong;
 use Geodesy\Models\ModelInterface;
 
 
@@ -70,53 +71,5 @@ abstract class BaseDatum
     {
         return $this->getModel()->getSecondEccentricitySquared();
     }
-
-    public function transform(ECEF $ecef): ECEF
-    {
-
-        return $this->helmertTransform($ecef);
-    }
-
-    // Burka-Wolf simplification of Helmert Transformation
-    private function helmertTransform(ECEF $ecef): ECEF
-    {
-        $sourceDatum = $ecef->getReference();
-
-        // if converting to wgs84, use the inverse
-        if ($this instanceof WGS84){
-            $array = $sourceDatum->getDatum(true);
-        } else {
-            $array = $this->getDatum();
-        }
-
-        $x1 = $ecef->getX();
-        $y1 = $ecef->getY();
-        $z1 = $ecef->getZ();
-        $t  =  $array['TranslationVectors'];
-        $r  =  $array['RotationalVectors'];
-        $s  =  $array['Scale'];
-        
-
-        $tx = $t['x']; 
-        $ty = $t['y'];
-        $tz = $t['z'];
-        $s1 = $s/1e6 + 1;
-        $rx = deg2rad($r['x']/3600);
-        $ry = deg2rad($r['y']/3600);
-        $rz = deg2rad($r['z']/3600);
-
-        $x2 = $tx + $x1*$s1 - $y1*$rz + $z1*$ry;
-        $y2 = $ty + $x1*$rz + $y1*$s1 - $z1*$rx;
-        $z2 = $tz - $x1*$ry + $y1*$rx + $z1*$s1;
-
-        $location = new ECEF;
-        $location->setReference($this); // changed the Reference Datum to current datum
-        $location->setX($x2);
-        $location->setY($y2);
-        $location->setZ($z2);
-
-        return $location;
-    }
-
 
 }

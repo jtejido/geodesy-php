@@ -37,13 +37,10 @@ class ECEF2LLA extends BaseConversion implements ConversionInterface
         $p = sqrt( pow($x, 2) + pow($y, 2) );
         $th = atan2($this->datum->getSemiMajorAxis() * $z, $b * $p);
 
-        $long = atan2($y,$x);
+        $long = atan2($y,$x); 
         $lat = atan2( ($z + pow($ep,2) * $b * pow(sin($th), 3) ), ($p - $esq * $this->datum->getSemiMajorAxis() * pow(cos($th),3)) );
-        $N = $this->datum->getSemiMajorAxis() / ( sqrt(1 - $esq * pow(sin($lat),2)) );
-        $alt = $p / cos($lat) - $N;
-
-        $long = ($long % (2*pi())) == 0 ? $long : $long % (2*pi());
-
+        $alt = $p / cos($lat) - $this->datum->getSemiMajorAxis() / ( sqrt(1 - $esq * pow(sin($lat),2)) );
+        
         $this->latlong->setReference($this->datum);
         $this->latlong->setLatitude(rad2deg($lat));
         $this->latlong->setLongitude(rad2deg($long));

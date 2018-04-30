@@ -31,7 +31,7 @@ abstract class BaseConversion
         $this->unit = $unit;
     }
     
-    public function getUnit()
+    public function getUnit(): UnitInterface
     {
         return $this->unit;
     }

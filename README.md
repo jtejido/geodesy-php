@@ -35,7 +35,6 @@ It provides distance calculations by:
 
 
 
-
 All units are in Base Metre. It converts distance values to:
 
 
@@ -51,8 +50,8 @@ All units are in Base Metre. It converts distance values to:
 
 
 
-All units are in Base WGS84. It comes with some pre-built datums and also allows conversion between them.
-It also allows conversion between the ff:
+
+It also allows coordinate conversions between the ff:
 
 
 ## Position Conversion ##
@@ -64,6 +63,19 @@ It also allows conversion between the ff:
 3. Polar to Web Mercator
 
 4. Web Mercator to Polar
+
+
+
+Reference Datums are, and will become, WGS84. It also comes with some pre-built datums (though very limited as it has little use for me aside from WGS84 at the time of writing this) and also allows transformation between them.
+
+
+## Transformation Options ##
+
+1. 3-Parameter Molodensky Transformer
+
+2. 7-Parameter Helmert Transformer
+
+3. 10-Parameter Molodensky-Badekas Transformer
 
 
 
