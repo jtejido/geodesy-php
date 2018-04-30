@@ -34,10 +34,12 @@ It provides distance calculations by:
 6. [Forsythe-Andoyer-Lambert Formula](http://www2.unb.ca/gge/Pubs/TR77.pdf)
 
 
+
+
 All units are in Base Metre. It converts distance values to:
 
 
-### Unit Conversion ###
+## Unit Conversion ##
 
 1. Kilometre
 
@@ -48,11 +50,12 @@ All units are in Base Metre. It converts distance values to:
 4. Astronomical Unit
 
 
+
 All units are in Base WGS84. It comes with some pre-built datums and also allows conversion between them.
 It also allows conversion between the ff:
 
 
-### Position Conversion ###
+## Position Conversion ##
 
 1. Polar to Cartesian
 
