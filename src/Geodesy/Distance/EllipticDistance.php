@@ -11,8 +11,9 @@ class EllipticDistance extends BaseDistance implements DistanceInterface
     {
         parent::__construct($source, $destination);
     }
+
     /**
-     * From Jean Meeus' book. 'Astronomical Algorithms' Chapter 10
+     * Andoyer's Distance formula. from 'annuaire du Bureau des Longitudes'. 1950.
      */
     protected function distance(): float
     {
@@ -23,7 +24,6 @@ class EllipticDistance extends BaseDistance implements DistanceInterface
         $long2 = $this->getDestinationLongitude();
 
         $a = $this->getSemiMajorAxis();
-        $b = $this->getSemiMinorAxis();
         $f = $this->getInverseFlattening();
 
         $F = ($lat1 + $lat2) / 2.0;

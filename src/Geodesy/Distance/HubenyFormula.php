@@ -23,7 +23,6 @@ class HubenyFormula extends BaseDistance implements DistanceInterface
 
         $a = $this->getSemiMajorAxis();
         $b = $this->getSemiMinorAxis();
-        $f = $this->getInverseFlattening();
         $f2 = pow($b, 2) / pow($a, 2);
         $e2 = 1.0 - $f2;
 

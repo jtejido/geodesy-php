@@ -11,17 +11,28 @@ It also supports conversion between units of length, Polar position to Cartesian
 
 It provides distance calculations by:
 
+
+### [Great-circle distance](https://en.wikipedia.org/wiki/Great-circle_distance) ###
+
 1. [Spherical Law of Cosines](https://en.wikipedia.org/wiki/Spherical_law_of_cosines) 
 
-2. [Haversine formula](https://en.wikipedia.org/wiki/Haversine_formula)
+2. [Haversine Formula](https://en.wikipedia.org/wiki/Haversine_formula)
 
-3. [Vincenty's formula](https://en.wikipedia.org/wiki/Vincenty%27s_formulae)
 
-4. [Hubeny's formula](https://www.geo.tuwien.ac.at/fileadmin/editors/VGI/VGI_195403_Hubeny.pdf)
+### [Ellipsoid Geodesics](https://en.wikipedia.org/wiki/Geodesics_on_an_ellipsoid) ###
 
-5. [Thomas' formula](http://www.dtic.mil/dtic/tr/fulltext/u2/703541.pdf)
+1. [Vincenty's Formula](https://en.wikipedia.org/wiki/Vincenty%27s_formulae)
 
-6. [Andoyer-Lambert formula](https://navlib.net/wp-content/uploads/2013/10/admiralty-manual-of-navigation-vol-1-1964-english501c.pdf)
+2. [Hubeny's Formula](https://www.geo.tuwien.ac.at/fileadmin/editors/VGI/VGI_195403_Hubeny.pdf)
+
+3. [Thomas' Formula](http://www.dtic.mil/dtic/tr/fulltext/u2/703541.pdf)
+
+4. [Andoyer-Lambert Formula](https://navlib.net/wp-content/uploads/2013/10/admiralty-manual-of-navigation-vol-1-1964-english501c.pdf)
+
+5. [Elliptic Distance](http://edukacja.3bird.pl/download/fizyka/astronomia-jean-meeus-astronomical-algorithms.pdf)
+
+6. [Forsythe-Andoyer-Lambert Formula](http://www2.unb.ca/gge/Pubs/TR77.pdf)
+
 
 
 Documentation

@@ -25,11 +25,13 @@ class AndoyerLambert extends BaseDistance implements DistanceInterface
         $a = $this->getSemiMajorAxis();
         $b = $this->getSemiMinorAxis();
         $f = $this->getInverseFlattening();
-
         $long_diff = $long2 - $long1;
         $rLat1=atan($b*tan($lat1)/$a);
         $rLat2=atan($b*tan($lat2)/$a);
         $spherical_distance = acos(sin($rLat1) * sin($rLat2) + cos($rLat1) * cos($rLat2) * cos($long_diff));
+
+        // this is the Andoyer-Lambert Correction for Spherical Cosine Law
+        
         $cosineSd = cos($spherical_distance/2.0);
         $sinSd = sin($spherical_distance/2.0);
         $c = (sin($spherical_distance) - $spherical_distance) * (sin($rLat1)+sin($rLat2))*(sin($rLat1)+sin($rLat2)) / pow($cosineSd, 2);
