@@ -7,14 +7,13 @@ use Geodesy\Unit\UnitInterface;
 use Geodesy\Unit\Metre;
 use Geodesy\Conversion\LLA2ECEF;
 use Geodesy\Conversion\ECEF2LLA;
-use Geodesy\Constants\Constants;
 use Geodesy\Datum\WGS84;
 use Geodesy\Datum\DatumInterface;
 
 abstract class BaseDistance
 {
 
-	private $source;
+	public $source;
 
     private $destination;
 
@@ -22,36 +21,13 @@ abstract class BaseDistance
 
     private $unit;
 
-    protected $constants;
-
     public function __construct(LatLong $source, LatLong $destination)
     {
         $this->source = $source;
         $this->destination = $destination;
-
-        if ($this->source === null || $this->destination === null) {
-            throw new \Exception('Source or Destination cannot be null');
-        }
-
-        $sourceDatum = $this->source->getReference();
-        $destinationDatum = $this->destination->getReference();
-
-        $this->commonDatum = $destinationDatum;
-        
-        if($sourceDatum instanceof WGS84 || $destinationDatum instanceof WGS84) {
-            $this->transformSourceTo($destinationDatum);
-        }
-
-        if(!$sourceDatum instanceof WGS84 && !$destinationDatum instanceof WGS84) {
-            if(!$sourceDatum instanceof $destinationDatum) {
-                // convert to WGS84 first, then to destination's datum
-                $this->transformSourceTo(new WGS84);
-                $this->transformSourceTo($destinationDatum);
-            }
-        }    
-       
         $this->unit = new Metre; // default unit
-        $this->constants = new Constants; // for spherical formulas
+        $this->commonDatum = $this->destination->getReference();
+        $this->checkDatum();
     }
 
     protected function getSourceLatitude(): float
@@ -89,13 +65,33 @@ abstract class BaseDistance
         return $this->getUnit()->convert($this->distance());
     }
 
+    public function checkDatum()
+    {
+
+        $sourceDatum = $this->source->getReference();
+        $destinationDatum = $this->destination->getReference();
+
+        if($sourceDatum instanceof WGS84 || $destinationDatum instanceof WGS84) {
+            $this->transformSourceTo($destinationDatum);
+        }
+
+        if(!$sourceDatum instanceof WGS84 && !$destinationDatum instanceof WGS84) {
+            if(!$sourceDatum instanceof $destinationDatum) {
+                // convert to WGS84 first, then to destination's datum
+                $this->transformSourceTo(new WGS84);
+                $this->transformSourceTo($destinationDatum);
+            }
+        }
+
+    }
+
     private function transformSourceTo(DatumInterface $datum)
     {
         $lla2ecef = new LLA2ECEF($this->source);
         $source_ecef = $lla2ecef->convert();
         $new_ecef = $datum->transform($source_ecef);
         $ecef2lla = new ECEF2LLA($new_ecef);
-        $this->source =  $ecef2lla->convert();
+        $this->source = $ecef2lla->convert();
     }
 
     protected function getSemiMajorAxis(): float
@@ -111,6 +107,11 @@ abstract class BaseDistance
     protected function getInverseFlattening(): float
     {
         return $this->commonDatum->getInverseFlattening();
+    }
+
+    public function getSecondEccentricitySquared(): float
+    {
+        return $this->commonDatum->getSecondEccentricitySquared();
     }
 
     public function isInRange(float $range): bool

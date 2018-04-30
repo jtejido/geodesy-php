@@ -99,7 +99,7 @@ class VincentyFormula extends BaseDistance implements DistanceInterface
             throw new \Exception('Failed to converge');
         }
 
-        $uSq = $cosSqAlpha * (pow($a, 2) - pow($b,2)) / pow($b ,2);
+        $uSq = $cosSqAlpha * (pow($a/$b, 2) - 1);
 
         /**
          we'll use Helmert's expansion for A and B
