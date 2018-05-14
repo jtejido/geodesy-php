@@ -70,16 +70,16 @@ It also allows coordinate/geographical conversions between the ff:
 ## Transformation Options ##
 
 
-Reference Datums are, by default, set to WGS84. You can also transform one coordinate taken from a different source to another (see [this](https://epsg.io/) for reference), as it also comes with some pre-built datums (though very limited in number as it has little use for me aside from WGS84, i.e. at the time of writing this). 
+Reference Datums are and will be, by default, set to WGS84. You can also transform one coordinate taken from a different source to another (see [this](https://epsg.io/) for reference), as it also comes with pre-built datums (see the Datum namespace for options). 
 
-The following are the transformer options:
+The following are the transformation options:
 
 
-1. 3-Parameter Molodensky Transformer
+1. 3-Parameter Molodensky Transformation
 
-2. 7-Parameter Helmert Transformer
+2. 7-Parameter Helmert Transformation
 
-3. 10-Parameter Molodensky-Badekas Transformer
+3. 10-Parameter Molodensky-Badekas Transformation
 
 
 
