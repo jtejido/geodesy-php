@@ -9,7 +9,7 @@ class OSGB1936 extends BaseDatum implements DatumInterface
 
 	CONST DATUM = array (
 			'Name' => "OSGB 1936",
-			'CRS' => 4277,
+			'CRS' => 27700,
             'TranslationVectors' => array(
                 'x' => -446.448,
                 'y' => 125.157,
