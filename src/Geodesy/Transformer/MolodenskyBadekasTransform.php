@@ -19,7 +19,7 @@ class MolodenskyBadekasTransform extends BaseTransformer implements TransformerI
         $sourceDatum = $source->getReference();
         $source_ecef = $this->toECEF($source);
         
-        $array = $sourceDatum->getDatum(true);
+        $array = $sourceDatum->getVector(true);
 
         $x1 = $source_ecef->getX();
         $y1 = $source_ecef->getY();

@@ -21,19 +21,24 @@ abstract class BaseDatum
         }
     }
 
-    public abstract function datum(): array;
+    public function datum(): array
+    {
+        return static::DATUM;
+    }
 
-    public function getDatum(bool $toWGS = false): array
+    public function getVector(bool $toWGS = false): array
     {
         $array = $this->datum();
-        
+ 
         if($toWGS) {
             array_walk_recursive($array, function (&$item, $key) 
                 {
-                   $item *= -1;
-                }
+                    if($key == 'x' || $key == 'y' || $key == 'z' || $key == 'Scale')
+                       $item *= -1;
+                    }
             );
         }
+         
         return $array;
     }
 
@@ -42,9 +47,44 @@ abstract class BaseDatum
         return $this->model;
     }
 
+    public function getRemarks(): string
+    {
+        return static::DATUM['Remarks'];
+    }
+
+    public function getSource(): string
+    {
+        return static::DATUM['Source'];
+    }
+
+    public function getScope(): string
+    {
+        return static::DATUM['Scope'];
+    }
+
+    public function getOrigin(): string
+    {
+        return static::DATUM['Origin'];
+    }
+
+    public function getName(): string
+    {
+        return static::DATUM['Name'];
+    }
+
+    public function getCRSCode(): int
+    {
+        return static::DATUM['CRS'];
+    }
+
+    public function getArea(): string
+    {
+        return static::DATUM['Area'];
+    }
+
     public function getFlattening(): float
     {
-        return $this->getModel()->getFlattening();
+        return static::DATUM;
     }
 
     public function getInverseFlattening(): float

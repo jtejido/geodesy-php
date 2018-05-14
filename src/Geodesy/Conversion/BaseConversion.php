@@ -2,7 +2,6 @@
 
 namespace Geodesy\Conversion;
 
-use Geodesy\Constants\Constants;
 use Geodesy\Unit\UnitInterface;
 use Geodesy\Unit\Metre;
 

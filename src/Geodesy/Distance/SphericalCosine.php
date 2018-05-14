@@ -8,7 +8,6 @@ use Geodesy\Datum\WGS84;
 class SphericalCosine extends BaseDistance implements DistanceInterface
 {
 
-    private $commonDatum;
 
     public function __construct(LatLong $source, LatLong $destination)
     {

@@ -77,7 +77,7 @@ abstract class BaseDistance
     public function getDistance(): float
     {
         $this->checkDatum();
-        return $this->getUnit()->convert($this->distance());
+        return round($this->getUnit()->convert($this->distance()), 3);
     }
 
     public function checkDatum()
@@ -86,13 +86,12 @@ abstract class BaseDistance
         $sourceDatum = $this->source->getReference();
         $destinationDatum = $this->destination->getReference();
 
-        if(!$sourceDatum instanceof WGS84 || !$destinationDatum instanceof WGS84) {
-            if(!$sourceDatum instanceof WGS84) {
-                $this->source = $this->getTransformer()->transform($this->source, new WGS84);
-            }
-            if(!$destinationDatum instanceof WGS84) {
-                $this->destination = $this->getTransformer()->transform($this->destination, new WGS84);
-            }
+        if(!$sourceDatum instanceof WGS84) {
+            $this->source = $this->getTransformer()->transform($this->source, new WGS84);
+        }
+        
+        if(!$destinationDatum instanceof WGS84) {
+            $this->destination = $this->getTransformer()->transform($this->destination, new WGS84);
         }
     }
 

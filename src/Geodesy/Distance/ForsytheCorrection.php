@@ -32,7 +32,7 @@ class ForsytheCorrection extends BaseDistance implements DistanceInterface
         $long_diff = $long2 - $long1;
         $spherical_distance = acos(sin($lat1) * sin($lat2) + cos($lat1) * cos($lat2) * cos($long_diff));
 
-        // this is the Andoyer-Lambert Correction for Spherical Cosine Law
+        // this is the Forsythe Correction for Spherical Cosine Law
         
         $P = pow(sin($lat1) + sin($lat2), 2) / (1 + cos($spherical_distance));
         $Q = pow(sin($lat1) - sin($lat2), 2) / (1 - cos($spherical_distance));

@@ -23,7 +23,7 @@ abstract class BaseModel
 
     public function getSemiMinorAxis(): float
     {
-        return static::SEMI_MINOR_AXIS;
+        return $this->getSemiMajorAxis() * (1 - $this->getInverseFlattening());
     }
 
     public function getFirstEccentricitySquared(): float
@@ -33,7 +33,7 @@ abstract class BaseModel
 
     public function getSecondEccentricitySquared(): float
     {
-        return $this->getInverseFlattening() * (2 - $this->getInverseFlattening()) / pow(1 - $this->getInverseFlattening(), 2);
+        return $this->getInverseFlattening() * $this->getFirstEccentricitySquared();
     }
 
 }

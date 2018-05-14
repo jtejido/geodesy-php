@@ -19,9 +19,9 @@ class MolodenskyTransform extends BaseTransformer implements TransformerInterfac
         
         // if converting to wgs84, use the inverse
         if ($destinationDatum instanceof WGS84){
-            $array = $sourceDatum->getDatum(true);
+            $array = $sourceDatum->getVector(true);
         } else {
-            $array = $destinationDatum->getDatum();
+            $array = $destinationDatum->getVector();
         }
 
         $t  =  $array['TranslationVectors'];
