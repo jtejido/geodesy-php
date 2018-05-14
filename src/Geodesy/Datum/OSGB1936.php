@@ -10,14 +10,17 @@ class OSGB1936 extends BaseDatum implements DatumInterface
 	CONST DATUM = array (
 			'Name' => "OSGB 1936",
 			'CRS' => 4277,
-			'TranslationVectors' => array(
-			),
-			'RotationalVectors' => array(
-				'x' => 0,
-				'y' => 0,
-				'z' => 0,
-			),
-			'Scale' => 0,
+            'TranslationVectors' => array(
+                'x' => -446.448,
+                'y' => 125.157,
+                'z' => -542.060,
+                ),
+            'RotationalVectors' => array (
+                'x' => -0.150,
+                'y' => -0.247,
+                'z' => -0.842,
+                ),
+            'Scale' => 20.489,
 			'Area' => "UK - Britain and UKCS 49?46'N to 61?01'N, 7?33'W to 3?33'E",
 			'Remarks' => "Parameter values taken from OSGB 1936 to ETRS89 (1) (tfm code 5338) assuming that ETRS89 is coincident with WGS 84 within the accuracy of the tfm. Within accuracy of the tfm equivalent to OSGB 1936 / British National Grid to WGS 84 (2) (tfm code 15956).",
 			'Source' => "OGP",
