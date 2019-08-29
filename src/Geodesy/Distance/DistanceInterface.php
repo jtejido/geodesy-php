@@ -2,7 +2,6 @@
 
 namespace Geodesy\Distance;
 
-interface DistanceInterface
-{
-    
+interface DistanceInterface {
+
 }
