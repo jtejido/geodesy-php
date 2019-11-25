@@ -14,7 +14,7 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"Geodesy\\": "src/"
+			"Geodesy\\": "src/Geodesy/"
 		}
 	},
 	"autoload-dev": {
